@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stephen Sheng – Student, AI & Robotics, Developer Portfolio</title>
+
+  <meta
+    name="description"
+    content="I'm Stephen Sheng, a high school student who loves building things with code, exploring AI and robotics, and sprinting on the track. This is my personal site with projects, hobbies, and ways to contact me."
+  />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #050816;
+      --card: #0f172a;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.18);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: #1f2933;
+      --radius-lg: 18px;
+      --radius-full: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #1d2538 0, #050816 50%, #020617 100%);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1.25rem;
+    }
+
+    .shell {
+      max-width: 900px;
+      width: 100%;
+    }
+
+    main {
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.15), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(129, 140, 248, 0.18), transparent 55%),
+                  var(--card);
+      border-radius: 24px;
+      border: 1px solid var(--border-subtle);
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.7),
+        0 0 40px rgba(56, 189, 248, 0.18);
+      padding: 2rem 1.75rem 2.25rem;
+      backdrop-filter: blur(18px);
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #22c55e, #38bdf8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: #0b1120;
+      box-shadow: 0 0 32px rgba(34, 197, 94, 0.6);
+      flex-shrink: 0;
+    }
+
+    .headline h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.25rem;
+    }
+
+    .headline p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      padding: 0.25rem;
+      border-radius: var(--radius-full);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid #111827;
+    }
+
+    .tab-button {
+      flex: 1;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.6rem 0.9rem;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .tab-button:hover {
+      background: rgba(31, 41, 55, 0.9);
+      color: #e5e7eb;
+      transform: translateY(-1px);
+    }
+
+    .tab-button.active {
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.4), rgba(37, 99, 235, 0.45));
+      color: #0b1120;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.7);
+      transform: translateY(-1px);
+    }
+
+    /* Content */
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    section {
+      margin-bottom: 1.75rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    h3::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.9);
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-main);
+    }
+
+    ul {
+      list-style: none;
+      margin-top: 0.4rem;
+    }
+
+    li {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      padding: 0.4rem 0.6rem;
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.08);
+      margin-bottom: 0.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    li span.tag {
+      font-size: 0.75rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      color: #cbd5f5;
+    }
+
+    figure {
+      margin-top: 1rem;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: #020617;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    img {
+      width: 100%;
+      display: block;
+      max-height: 280px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    figure:hover img {
+      transform: scale(1.03);
+    }
+
+    figcaption {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding: 0.6rem 0.9rem 0.7rem;
+      text-align: center;
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.9));
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.6rem;
+    }
+
+    .contact-card {
+      background: rgba(15, 23, 42, 0.85);
+      border-radius: var(--radius-lg);
+      padding: 0.75rem 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      font-size: 0.9rem;
+    }
+
+    .contact-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-value a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .contact-value a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: #6b7280;
+      text-align: right;
+    }
+
+    footer span {
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding: 1.5rem 1.25rem 1.75rem;
+      }
+
+      header {
+        align-items: flex-start;
+      }
+
+      .headline h1 {
+        font-size: 1.6rem;
+      }
+
+      .tabs {
+        overflow-x: auto;
+      }
+
+      .tab-button {
+        flex: 0 0 auto;
+        padding-inline: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <main>
+      <header>
+        <div class="avatar">S</div>
+        <div class="headline">
+          <h1>Hi, I'm Stephen </h1>
+          <p>High school student who loves building with code, robotics, and a bit of controlled chaos on the track.</p>
+        </div>
+      </header>
+
+      <!-- Tabs -->
+      <nav class="tabs">
+        <button class="tab-button active" data-tab="about">About</button>
+        <button class="tab-button" data-tab="hobbies">Hobbies</button>
+        <button class="tab-button" data-tab="projects">Projects</button>
+        <button class="tab-button" data-tab="contact">Contact</button>
+      </nav>
+
+      <!-- About Tab -->
+      <section class="tab-content active" id="about">
+        <h3>About Me</h3>
+         <p>
+          I'm <strong>Stephen Sheng</strong>, a high school student who enjoys building things with code,
+          exploring machine learning, and working with my robotics team. When I'm not debugging something,
+          you'll probably find me sprinting on the track, hanging out with my dog, trying new ideas with friends,
+          or playing pickup basketball.
+        </p>
+
+        <figure>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Aurora_borealis_over_Eielson_Air_Force_Base%2C_Alaska.jpg"
+            alt="Northern lights glowing over a base in Alaska"
+            loading="lazy"
+          />
+          <figcaption>Aurora Borealis over Eielson Air Force Base, Alaska — the kind of sky that feels like sci-fi.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Hobbies Tab -->
+      <section class="tab-content" id="hobbies">
+        <h3>My Hobbies</h3>
+        <ul>
+          <li>
+            Robotics & Engineering
+            <span class="tag">build, iterate, break</span>
+          </li>
+          <li>
+            Track & Field (100m &amp; 200m sprints)
+            <span class="tag">chasing PRs</span>
+          </li>
+          <li>
+            Listening to music & movie soundtracks
+            <span class="tag">Hans Zimmer hours</span>
+          </li>
+          <li>
+            Scrolling endlessly
+            <span class="tag">I’m working on it (trust) </span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Projects Tab -->
+      <section class="tab-content" id="projects">
+        <h3>Things I’m Building</h3>
+        <p style="margin-bottom: 0.75rem;">
+          A few areas I'm exploring and coding right now:
+        </p>
+        <ul>
+          <li>
+            AI & Machine Learning mini-projects
+            <span class="tag">Python / notebooks</span>
+          </li>
+          <li>
+            FTC Robotics code & mechanisms
+            <span class="tag">motors / servos / auto</span>
+          </li>
+          <li>
+            Simple web projects like this page
+            <span class="tag">HTML / CSS / JS</span>
+          </li>
+        </ul>
+        <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--text-muted);">
+          More will be added later...
+        </p>
+      </section>
+
+      <!-- Contact Tab -->
+      <section class="tab-content" id="contact">
+        <h3>Get in Touch</h3>
+        <p>If you want to talk about AI, robotics, sprinting, or music, here’s how you can reach me:</p>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-label">GitHub</div>
+            <div class="contact-value">
+              <a href="https://github.com/stephensheng2" target="_blank" rel="noopener noreferrer"> github.com/stephensheng2 </a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-label">Email</div>
+            <div class="contact-value">
+              <a href="mailto:stephensheng09@gmail.com">stephensheng09@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-label">TikTok / Edits</div>
+            <div class="contact-value">
+              <span>@RKeditts</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <span>Built by Stephen • Hosted on GitHub Pages</span>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    tabButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetId = btn.dataset.tab;
+
+        // update buttons
+        tabButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        // update content
+        tabContents.forEach((section) => {
+          if (section.id === targetId) {
+            section.classList.add("active");
+          } else {
+            section.classList.remove("active");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
